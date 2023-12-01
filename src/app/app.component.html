@@ -3,13 +3,10 @@
   <ion-title></ion-title>
 
 </ion-header>
-<ion-content>
+<ion-content [scrollX]="true" >
+  <h1>SimplePDF-sign!!</h1>
 
-  <h1>SimplePDF-sign</h1>
-  <div style="width: 100%; overflow-x: auto; white-space: nowrap;">
-    <div style="overflow-x: scroll; white-space: nowrap;"></div>
-    <canvas #pdfcanvas id="pdfcanvas">check</canvas>
-</div>
+    <canvas  #pdfcanvas id="pdfcanvas">check</canvas>
 
 </ion-content>
 

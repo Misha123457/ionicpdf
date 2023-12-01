@@ -45,6 +45,7 @@
 }
 
 ion-content{
+ 
   --background: #FFE5CC
 }
 
@@ -55,6 +56,7 @@ ion-content{
   right:0%;
   left:0%;
   bottom:0%;
+  
 
 
 }
@@ -63,8 +65,12 @@ ion-content{
 #pdfcanvas {
   border: 1px solid black;
   direction: ltr;
+  
+
 
 }
+
+
 
 
 ion-header {

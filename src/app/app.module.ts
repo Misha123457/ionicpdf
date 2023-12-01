@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { NgxSignaturePadModule } from '@eve-sama/ngx-signature-pad';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent,FileuploadComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,NgxSignaturePadModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,NgxSignaturePadModule, IonicStorageModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

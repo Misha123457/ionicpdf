@@ -6,6 +6,9 @@ import { jsPDF } from 'jspdf';
 import { Router } from '@angular/router';
 import { saveAs } from 'file-saver';
 import SignaturePad from 'signature_pad';
+import { IonicStorageModule } from '@ionic/storage-angular';``
+import { Storage } from '@ionic/storage-angular';
+
 
 if( pdfjsLib !== undefined ){
   console.log( "set worker...");
@@ -54,12 +57,16 @@ export class AppComponent implements OnInit {
 
   pdfurl = encodeURI("https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf");
 
-  constructor(private router: Router, private elementRef: ElementRef) { }
+  constructor(private router: Router, private elementRef: ElementRef, private storage: Storage) { }
 
   onBeginSign(): void { }
   onEndSign(): void { }
 
-  saveSignature() {
+  async saveSignature() {
+
+    const uses_num = await this.storage.get('uses');
+    console.log("number of uses",uses_num)
+    await this.storage.set('uses', uses_num+1);
 
     this.signaturePad.backgroundColor="rgba(255,255,255,0)";
     const signlinkoncanvas = this.signaturePad.toDataURL("image/png"); // Получаем данные изображения в base64
@@ -73,8 +80,38 @@ export class AppComponent implements OnInit {
    
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    
+    const d = new Date();
+    let currentmonth = d.getMonth();
+    console.log("month",currentmonth)
+    await this.storage.create();
+    //await this.storage.set('name', 'Mr. Ionitron');
+    const month = await this.storage.get('month');
+    //const uses_num = await this.storage.get('uses');
+    console.log("recievedmonth",month)
+    console.log("indexedDB",name)
+    if (month==null)
+    {
+      console.log("no month in storage")
+      //await this.storage.set('month', currentmonth);
+      //await this.storage.set('uses', 0);
+    }
+    else if (currentmonth>month)
+    {
+      console.log("new month started")
+      await this.storage.set('uses', 0);
+    }
+    else
+    {
+      console.log("still the old month")
+    }
+
+  
+
+        
     this.init()
+
    
   }
 
@@ -95,6 +132,8 @@ export class AppComponent implements OnInit {
     //this.ctx = this.canvas.nativeElement.getContext('2d');
     this.ctx = this.pdfcanvas.nativeElement.getContext('2d');
     this.fabrikcanvas = new fabric.Canvas("pdfcanvas");
+    //await this.storage.create();
+    //await this.storage.set('name', 'Mr. Ionitron');
 
     //this.signaturePad.penColor = 'rgb(56,128,255)';
 
