@@ -1,39 +1,22 @@
 
 <ion-header>
   <ion-title></ion-title>
-
+  <div class="fileupload">    
+    <app-fileupload (pdflinkCreated)="onpdflinkCreated($event)"></app-fileupload>
+    </div> 
 </ion-header>
 <ion-content [scrollX]="true" >
-  <h1>SimplePDF-sign!!</h1>
+  <h1>Choose PDF File, which you would like to scroll x und y</h1>
 
     <canvas  #pdfcanvas id="pdfcanvas">check</canvas>
 
-</ion-content>
+
 
 <!-- app-fileupload.component.html -->
 
-<ion-footer>
-      <ion-toolbar color="primary">
-      <ion-button (click)="saveAsPDF()" class="left-align-button">Save in PDF</ion-button> 
-    <ion-buttons slot="end">
-      <ion-button color="light" expand="full" (click)="saveSignature()"> Sign</ion-button>
-      <ion-button color="light" expand="full" (click)="undo()"> Undo</ion-button>
-      <ion-button color="light" expand="full" (click)="ClearSignature()"> Clear</ion-button>     
-    </ion-buttons>
-  
-</ion-toolbar>
 
-  
-    <div class="signature-pad">
-       <div>
-         <canvas #canvas id="canvas"></canvas>
-       </div>
-     </div>
+</ion-content>
 
-<div class="fileupload">    
-<app-fileupload (pdflinkCreated)="onpdflinkCreated($event)"></app-fileupload>
-</div>  
-</ion-footer>
 
 
 
